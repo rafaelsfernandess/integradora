@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="SENAC" default="make.jar" basedir=".">
+
+	<description>
+       Programa de automação de vendas
+    </description>
+
+	<property file="build.properties" />
+
+	<path id="other-libs">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	
+	<!-- APAGANDO E CRIANDO NOVAMENTE AS PASTAS -->
+	<target name="prepare">
+		<echo>Apagando os diretórios</echo>
+		<delete dir="${bin.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${dist.dir}/${lib.dir}" />
+
+		<echo>Criando os diretórios</echo>
+		<mkdir dir="${bin.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.dir}/${lib.dir}" />
+	</target>
+
+	<!-- COMPILANDO CÓDIGO FONTE -->
+	<target name="compile" depends="prepare">
+		<echo>Compilando a view</echo>
+		<javac srcdir="${src.dir}" destdir="${bin.dir}">
+			<classpath>
+				<path refid="other-libs" />
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- EMPACOTANDO APLICAÇÃO -->
+	<target name="make.jar" depends="compile" description="Gera o pacote .jar para o ambiente de produção.">
+		<echo>Criando ${jar.file}</echo>
+
+		<jar destfile="${dist.dir}/${jar.file}" basedir="${bin.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="br.com.empresa.Principal" />
+				<attribute name="Class-Path" value="${classpath}" />
+			</manifest>
+			
+			<fileset dir="${src.dir}">
+				<include name="**/*.png" />
+				<include name="**/*.jpg" />
+				<include name="**/*.mp3" />
+				<include name="**/*.gif" />
+				<include name="**/*.xml" />
+			</fileset>
+		</jar>
+
+		<!--
+		<copy todir="${dist.dir}/${conf.dir}">
+			<fileset dir="${conf.dir}">
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>-->
+		
+		<copy todir="${dist.dir}/${lib.dir}">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		
+	</target>
+
+	<!-- TESTANDO APLICAÇÃO -->
+	<target name="teste" depends="make.jar" description="Executa a aplicação">
+		<exec executable="java">
+			<arg line="-classpath ${dist.dir}/${jar.file} br.com.empresa.Principal"/>
+		</exec>
+	</target>
+
+</project>
