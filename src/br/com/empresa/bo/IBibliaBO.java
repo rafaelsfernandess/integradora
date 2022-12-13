@@ -8,7 +8,9 @@ import br.com.empresa.vo.LivroVO;
 
 public interface IBibliaBO {
 	
-	public List<BibliaVO> listarLivro() throws BOException;
+	public abstract List<BibliaVO> listarLivro() throws BOException;
+
+	public abstract List<BibliaVO> listarVersiculos(LivroVO livro) throws BOException;
 	
 	
 

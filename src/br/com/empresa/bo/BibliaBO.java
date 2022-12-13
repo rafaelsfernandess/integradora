@@ -22,7 +22,14 @@ public class BibliaBO implements IBibliaBO{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public List<BibliaVO> listarVersiculos(LivroVO livro) throws BOException {
+		if (livro == null || livro.getEscritor() == null) {
+			throw new BOException();
+	}
+		return bibliaDAO.listarVersiculo();
+	}
 	
 
 }

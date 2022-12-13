@@ -1,22 +1,16 @@
 package br.com.empresa.dao;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Tuple;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.Path;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import br.com.empresa.exception.BOException;
+import br.com.empresa.vo.BibliaVO;
 import br.com.empresa.vo.LivroVO;
 
 
@@ -48,9 +42,14 @@ public class BibliaDAO implements IBibliaDAO{
 		em.close();
 		return listaLivros;
 		
-		
-		
-		
-		
 	}
+
+	@Override
+	public List<BibliaVO> listarVersiculo() throws BOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	
 }

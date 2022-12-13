@@ -30,7 +30,10 @@ import br.com.empresa.vo.LivroVO;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.UIManager;
 
 public class ConsultaBibliaView extends JDialog {
@@ -113,7 +116,7 @@ public class ConsultaBibliaView extends JDialog {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBackground(UIManager.getColor("Button.light"));
 		btnPesquisar.setForeground(Color.BLACK);
-		btnPesquisar.setBounds(109, 328, 100, 23);
+		btnPesquisar.setBounds(10, 328, 100, 23);
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pesquisar();
@@ -123,7 +126,7 @@ public class ConsultaBibliaView extends JDialog {
 		Panel.add(btnPesquisar);
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(10, 328, 89, 23);
+		btnLimpar.setBounds(120, 328, 89, 23);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpar();
@@ -152,8 +155,17 @@ public class ConsultaBibliaView extends JDialog {
 		Panel.add(cbVersiculo);
 				
 		JButton btnFechar = new JButton("Fechar");
+		btnFechar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fechar();
+			}
+		});
 		btnFechar.setBounds(595, 384, 89, 23);
 		getContentPane().add(btnFechar);
+		
+		//Coloca a tela no centro da janela.
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
 		inicializarComponentes();
 
@@ -206,4 +218,9 @@ public class ConsultaBibliaView extends JDialog {
             cbVersiculo.removeAllItems();
         }         
     }
+	
+	private void fechar() {
+		this.setVisible(false);
+		dispose();
+	}
 }
