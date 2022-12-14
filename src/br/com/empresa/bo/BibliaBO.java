@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.empresa.dao.BibliaDAO;
 import br.com.empresa.dao.IBibliaDAO;
 import br.com.empresa.exception.BOException;
+import br.com.empresa.exception.BOValidationException;
 import br.com.empresa.vo.BibliaVO;
 import br.com.empresa.vo.LivroVO;
 
@@ -17,19 +18,13 @@ public class BibliaBO implements IBibliaBO{
 	}
 
 	@Override
-	public List<BibliaVO> listarLivro()
-			throws BOException {
+	public List<BibliaVO> listarVersiculo(LivroVO livro, Integer capitulo, Integer versiculoDe, Integer versiculoAte,
+			String texto) throws BOException, BOValidationException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public List<BibliaVO> listarVersiculos(LivroVO livro) throws BOException {
-		if (livro == null || livro.getEscritor() == null) {
-			throw new BOException();
-	}
-		return bibliaDAO.listarVersiculo();
-	}
 	
 
+	
 }

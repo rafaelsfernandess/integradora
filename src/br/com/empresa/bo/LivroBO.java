@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.empresa.dao.BibliaDAO;
 import br.com.empresa.dao.IBibliaDAO;
 import br.com.empresa.exception.BOException;
+import br.com.empresa.exception.BOValidationException;
 import br.com.empresa.vo.BibliaVO;
 import br.com.empresa.vo.LivroVO;
 
@@ -16,7 +17,7 @@ public class LivroBO implements ILivroBO{
 		bibliaDAO = new BibliaDAO();
 	}
 	@Override
-	public List<LivroVO> listarLivro() throws BOException {
+	public List<LivroVO> listarLivro() throws BOException, BOValidationException {
 		
 		return bibliaDAO.listarLivro();
 	}

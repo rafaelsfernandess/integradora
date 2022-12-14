@@ -10,7 +10,8 @@ public interface IBibliaDAO {
 
 	public abstract List<LivroVO> listarLivro() throws BOException;
 	
-	public abstract List<BibliaVO> listarVersiculo() throws BOException;
+	public abstract List<BibliaVO> listarVersiculo(LivroVO livro, Integer capitulo, Integer versiculoDe, Integer versiculoAte,
+			String texto) throws BOException;
 
 	
 	
